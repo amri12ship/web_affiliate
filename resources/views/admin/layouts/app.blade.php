@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') &middot; {{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Dashboard') &middot; {{ $siteName }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="sa-admin-page min-h-screen text-slate-800 antialiased">
@@ -13,9 +13,9 @@
             ['label' => 'Dashboard', 'route' => 'admin.dashboard', 'icon' => 'M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4h4v4a1 1 0 001 1h3a1 1 0 001-1V10'],
             ['label' => 'Produk', 'route' => 'admin.products.index', 'match' => 'admin.products.*', 'icon' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'],
             ['label' => 'Kategori', 'route' => 'admin.categories.index', 'match' => 'admin.categories.*', 'icon' => 'M4 6h16M4 12h16M4 18h7'],
-            ['label' => 'Review', 'route' => null, 'icon' => 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.05 10.1c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z'],
-            ['label' => 'Statistik', 'route' => null, 'icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'],
-            ['label' => 'Pengaturan', 'route' => null, 'icon' => 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z'],
+            ['label' => 'Review', 'route' => 'admin.reviews.index', 'match' => 'admin.reviews.*', 'icon' => 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.05 10.1c-.783-.57-.38-1.81.588-1.81h4.915a1 1 0 00.95-.69l1.519-4.674z'],
+            ['label' => 'Statistik', 'route' => 'admin.statistics.index', 'match' => 'admin.statistics.*', 'icon' => 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'],
+            ['label' => 'Pengaturan', 'route' => 'admin.settings.index', 'match' => 'admin.settings.*', 'icon' => 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z'],
         ];
     @endphp
 
@@ -31,7 +31,7 @@
             <div class="flex h-16 items-center gap-3 border-b border-slate-200 px-5">
                 <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 via-orange-500 to-rose-500 text-sm font-bold text-white shadow-md shadow-orange-500/30">SA</span>
                 <div class="leading-tight">
-                    <p class="text-sm font-semibold text-slate-800">{{ config('app.name', 'Laravel') }}</p>
+                    <p class="text-sm font-semibold text-slate-800">{{ $siteName }}</p>
                     <p class="text-xs text-slate-500">Panel Admin</p>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                 </button>
 
                 <div class="min-w-0 flex-1">
-                    <p class="truncate text-sm font-semibold text-slate-800">{{ config('app.name', 'Laravel') }}</p>
+                    <p class="truncate text-sm font-semibold text-slate-800">{{ $siteName }}</p>
                     <p class="truncate text-xs text-slate-500">@yield('title', 'Dashboard')</p>
                 </div>
 
@@ -124,8 +124,7 @@
                             <p class="truncate text-xs text-slate-500">{{ auth()->user()->email }}</p>
                             <span class="mt-1 inline-block rounded-full bg-orange-50 px-2 py-0.5 text-[10px] font-semibold uppercase text-orange-600">{{ auth()->user()->role }}</span>
                         </div>
-                        <a href="#" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50">Profil</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50">Pengaturan</a>
+                        <a href="{{ route('admin.settings.index') }}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50">Pengaturan</a>
                         <form method="POST" action="{{ route('admin.logout') }}">
                             @csrf
                             <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50">Logout</button>

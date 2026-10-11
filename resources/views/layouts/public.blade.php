@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Beranda') &middot; {{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Beranda') &middot; {{ $siteName }}</title>
     @hasSection('meta_description')
         <meta name="description" content="@yield('meta_description')">
     @endif
@@ -37,7 +37,7 @@
         <nav class="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8" aria-label="Navigasi utama">
             <a href="{{ $home }}" class="flex shrink-0 items-center gap-2.5">
                 <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 via-orange-500 to-rose-500 text-sm font-bold text-white shadow-md shadow-orange-500/30">SA</span>
-                <span class="text-sm font-semibold text-slate-800 sm:text-base">{{ config('app.name', 'Laravel') }}</span>
+                <span class="text-sm font-semibold text-slate-800 sm:text-base">{{ $siteName }}</span>
             </a>
 
             <ul class="ml-4 hidden items-center gap-1 lg:flex">
@@ -127,7 +127,7 @@
                 <div class="sm:col-span-2">
                     <div class="flex items-center gap-2.5">
                         <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 via-orange-500 to-rose-500 text-sm font-bold text-white shadow-md shadow-orange-500/30">SA</span>
-                        <span class="text-base font-semibold text-slate-800">{{ config('app.name', 'Laravel') }}</span>
+                        <span class="text-base font-semibold text-slate-800">{{ $siteName }}</span>
                     </div>
                     <p class="mt-3 max-w-md text-sm text-slate-500">
                         Rekomendasi produk pilihan dan viral di Shopee dengan harga menarik. Temukan produk favoritmu dan belanja lebih hemat.
@@ -156,7 +156,7 @@
 
             <div class="mt-8 border-t border-slate-100 pt-6">
                 <p class="text-xs text-slate-400">
-                    &copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}. Sebagian tautan merupakan tautan affiliate. Kami dapat menerima komisi tanpa biaya tambahan untuk Anda.
+                    &copy; {{ date('Y') }} {{ $siteName }}. Sebagian tautan merupakan tautan affiliate. Kami dapat menerima komisi tanpa biaya tambahan untuk Anda.
                 </p>
             </div>
         </div>
