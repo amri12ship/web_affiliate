@@ -6,6 +6,7 @@ use Database\Factories\CategoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Category extends Model
 {
@@ -45,5 +46,13 @@ class Category extends Model
     public function isActive(): bool
     {
         return $this->status === self::STATUS_ACTIVE;
+    }
+
+    /**
+     * Get the public URL for the category image, if any.
+     */
+    public function imageUrl(): ?string
+    {
+        return $this->image ? Storage::disk('public')->url($this->image) : null;
     }
 }

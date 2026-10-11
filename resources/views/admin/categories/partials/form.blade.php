@@ -90,7 +90,7 @@
                 <div class="mb-3 flex h-32 w-full items-center justify-center overflow-hidden rounded-lg border border-dashed border-slate-300 bg-slate-50">
                     <img
                         id="image-preview"
-                        src="{{ $category->image ? asset('storage/'.$category->image) : '' }}"
+                        src="{{ $category->imageUrl() ?? '' }}"
                         alt="Preview"
                         class="h-full w-full object-cover {{ $category->image ? '' : 'hidden' }}"
                     >

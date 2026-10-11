@@ -70,7 +70,7 @@
                                 <tr class="transition hover:bg-slate-50">
                                     <td class="px-5 py-3">
                                         @if ($category->image)
-                                            <img src="{{ asset('storage/'.$category->image) }}" alt="{{ $category->name }}" class="h-11 w-11 rounded-lg object-cover ring-1 ring-slate-200">
+                                            <img src="{{ $category->imageUrl() }}" alt="{{ $category->name }}" class="h-11 w-11 rounded-lg object-cover ring-1 ring-slate-200">
                                         @else
                                             <span class="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-500 ring-1 ring-slate-200">
                                                 {{ strtoupper(substr($category->name, 0, 1)) }}
