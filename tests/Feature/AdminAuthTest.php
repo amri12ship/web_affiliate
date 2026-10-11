@@ -27,6 +27,14 @@ class AdminAuthTest extends TestCase
         $response->assertSee('Login Admin');
     }
 
+    public function test_admin_login_page_does_not_reveal_default_email(): void
+    {
+        $response = $this->get('/admin/login');
+
+        $response->assertOk();
+        $response->assertDontSee('admin@affiliate.test');
+    }
+
     public function test_admin_can_login_with_correct_credentials(): void
     {
         $admin = User::factory()->admin()->create([
@@ -94,5 +102,33 @@ class AdminAuthTest extends TestCase
 
         $this->assertNotSame('password', $admin->password);
         $this->assertTrue(Hash::check('password', $admin->password));
+    }
+
+    public function test_admin_seeder_removes_legacy_default_account_when_custom_email_is_configured(): void
+    {
+        User::factory()->admin()->create(['email' => AdminSeeder::DEFAULT_EMAIL]);
+
+        config()->set('admin.name', 'Pemilik Situs');
+        config()->set('admin.email', 'owner@example.com');
+        config()->set('admin.password', 'rahasia-kuat');
+
+        $this->seed(AdminSeeder::class);
+
+        $this->assertDatabaseMissing('users', ['email' => AdminSeeder::DEFAULT_EMAIL]);
+        $this->assertDatabaseHas('users', [
+            'email' => 'owner@example.com',
+            'name' => 'Pemilik Situs',
+            'role' => 'admin',
+        ]);
+    }
+
+    public function test_admin_seeder_keeps_default_account_when_default_email_is_configured(): void
+    {
+        $this->seed(AdminSeeder::class);
+
+        $this->assertDatabaseHas('users', [
+            'email' => AdminSeeder::DEFAULT_EMAIL,
+            'role' => 'admin',
+        ]);
     }
 }
