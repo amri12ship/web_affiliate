@@ -54,6 +54,15 @@ class PublicSiteTest extends TestCase
         $response->assertSee(route('products.index'));
     }
 
+    public function test_homepage_shows_admin_login_link_in_navbar(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee(route('admin.login'), false);
+        $response->assertSee('Admin');
+    }
+
     public function test_homepage_shows_only_active_categories(): void
     {
         Category::factory()->create(['name' => 'Elektronik Aktif', 'status' => 'active']);
